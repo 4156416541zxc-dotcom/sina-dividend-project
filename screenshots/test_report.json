@@ -1,0 +1,119 @@
+{
+  "test_time": "2026-09-29T19:36:41.925188",
+  "summary": {
+    "total": 18,
+    "passed": 17,
+    "failed": 1,
+    "pass_rate": "94.4%"
+  },
+  "details": [
+    {
+      "test_name": "页面加载",
+      "passed": true,
+      "message": "标题: 新浪财经历史分红数据获取与预处理 | 实战作业",
+      "timestamp": "2026-09-29T19:36:29.535216"
+    },
+    {
+      "test_name": "导航栏存在",
+      "passed": true,
+      "message": "找到 5 个导航链接",
+      "timestamp": "2026-09-29T19:36:32.560452"
+    },
+    {
+      "test_name": "导航跳转",
+      "passed": false,
+      "message": "跳转到数据可视化区域",
+      "timestamp": "2026-09-29T19:36:33.112253"
+    },
+    {
+      "test_name": "图表-历年分红趋势",
+      "passed": true,
+      "message": "已渲染",
+      "timestamp": "2026-09-29T19:36:33.285400"
+    },
+    {
+      "test_name": "图表-累计派息对比",
+      "passed": true,
+      "message": "已渲染",
+      "timestamp": "2026-09-29T19:36:33.304720"
+    },
+    {
+      "test_name": "图表-分红类型分布",
+      "passed": true,
+      "message": "已渲染",
+      "timestamp": "2026-09-29T19:36:33.321732"
+    },
+    {
+      "test_name": "图表-派息热力图",
+      "passed": true,
+      "message": "已渲染",
+      "timestamp": "2026-09-29T19:36:33.337541"
+    },
+    {
+      "test_name": "图表-年度分红事件",
+      "passed": true,
+      "message": "已渲染",
+      "timestamp": "2026-09-29T19:36:33.353431"
+    },
+    {
+      "test_name": "图表-雷达图",
+      "passed": true,
+      "message": "已渲染",
+      "timestamp": "2026-09-29T19:36:33.370977"
+    },
+    {
+      "test_name": "表格表头",
+      "passed": true,
+      "message": "找到 10 列: 股票代码, 股票名称, 公告日期...",
+      "timestamp": "2026-09-29T19:36:35.927112"
+    },
+    {
+      "test_name": "表格数据行",
+      "passed": true,
+      "message": "当前页显示 15 行数据",
+      "timestamp": "2026-09-29T19:36:35.936509"
+    },
+    {
+      "test_name": "股票筛选",
+      "passed": true,
+      "message": "筛选贵州茅台后显示 15 行",
+      "timestamp": "2026-09-29T19:36:36.595301"
+    },
+    {
+      "test_name": "年份筛选",
+      "passed": true,
+      "message": "筛选2024年后显示 2 行",
+      "timestamp": "2026-09-29T19:36:37.118033"
+    },
+    {
+      "test_name": "搜索功能",
+      "passed": true,
+      "message": "搜索后显示 2 行",
+      "timestamp": "2026-09-29T19:36:37.646247"
+    },
+    {
+      "test_name": "分页信息",
+      "passed": true,
+      "message": "分页信息: 第 1 / 11 页",
+      "timestamp": "2026-09-29T19:36:38.299681"
+    },
+    {
+      "test_name": "下一页",
+      "passed": true,
+      "message": "从 '第 1 / 11 页' 变为 '第 2 / 11 页'",
+      "timestamp": "2026-09-29T19:36:38.651677"
+    },
+    {
+      "test_name": "统计表格",
+      "passed": true,
+      "message": "显示 5 只股票的统计数据",
+      "timestamp": "2026-09-29T19:36:39.279005"
+    },
+    {
+      "test_name": "响应式布局",
+      "passed": true,
+      "message": "已测试平板和手机视图",
+      "timestamp": "2026-09-29T19:36:41.513222"
+    }
+  ]
+}

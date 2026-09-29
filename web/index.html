@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新浪财经历史分红数据获取与预处理 | 实战作业</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">📊</span>
+                <span class="logo-text">分红数据分析平台</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#overview" class="nav-link active">项目概述</a></li>
+                <li><a href="#pipeline" class="nav-link">处理流程</a></li>
+                <li><a href="#visualization" class="nav-link">数据可视化</a></li>
+                <li><a href="#datatable" class="nav-link">数据明细</a></li>
+                <li><a href="#statistics" class="nav-link">统计分析</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero区域 -->
+    <header class="hero" id="overview">
+        <div class="hero-content">
+            <h1 class="hero-title">新浪财经历史分红数据<br><span class="highlight">获取与预处理实战</span></h1>
+            <p class="hero-subtitle">基于 Python 爬虫 + 数据清洗 + 可视化分析的完整数据工程</p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-records">161</div>
+                    <div class="stat-label">分红记录</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-stocks">5</div>
+                    <div class="stat-label">样本股票</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-years">30</div>
+                    <div class="stat-label">数据年份</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-cash">154</div>
+                    <div class="stat-label">现金分红</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-bg-pattern"></div>
+    </header>
+
+    <!-- 处理流程 -->
+    <section class="section" id="pipeline">
+        <div class="container">
+            <h2 class="section-title">数据处理流程</h2>
+            <p class="section-desc">从数据采集到最终可视化的完整工程链路</p>
+
+            <div class="pipeline">
+                <div class="pipeline-step">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">🕷️</div>
+                    <h3 class="step-title">数据采集</h3>
+                    <p class="step-desc">使用 Requests + BeautifulSoup 爬取新浪财经个股分红页面，解析HTML表格提取结构化数据</p>
+                    <div class="step-tech">
+                        <span class="tech-tag">Requests</span>
+                        <span class="tech-tag">BeautifulSoup</span>
+                        <span class="tech-tag">Pandas</span>
+                    </div>
+                </div>
+
+                <div class="pipeline-arrow">→</div>
+
+                <div class="pipeline-step">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">🧹</div>
+                    <h3 class="step-title">数据清洗</h3>
+                    <p class="step-desc">去重、日期标准化、数值类型转换、缺失值处理，计算每股派息和送转指标</p>
+                    <div class="step-tech">
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">数据清洗</span>
+                        <span class="tech-tag">特征工程</span>
+                    </div>
+                </div>
+
+                <div class="pipeline-arrow">→</div>
+
+                <div class="pipeline-step">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">📈</div>
+                    <h3 class="step-title">统计分析</h3>
+                    <p class="step-desc">按股票、年份多维度聚合统计，生成透视表和衍生指标，输出分析报告</p>
+                    <div class="step-tech">
+                        <span class="tech-tag">聚合分析</span>
+                        <span class="tech-tag">透视表</span>
+                        <span class="tech-tag">Excel导出</span>
+                    </div>
+                </div>
+
+                <div class="pipeline-arrow">→</div>
+
+                <div class="pipeline-step">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">🎨</div>
+                    <h3 class="step-title">可视化展示</h3>
+                    <p class="step-desc">基于 ECharts 构建交互式图表，网页端动态展示分红趋势与对比分析</p>
+                    <div class="step-tech">
+                        <span class="tech-tag">ECharts</span>
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 样本股票 -->
+            <div class="sample-stocks">
+                <h3 class="subsection-title">样本股票池</h3>
+                <div class="stock-grid" id="stock-grid">
+                    <!-- 动态生成 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据可视化 -->
+    <section class="section section-alt" id="visualization">
+        <div class="container">
+            <h2 class="section-title">数据可视化</h2>
+            <p class="section-desc">多维度图表展示分红数据特征与趋势</p>
+
+            <div class="chart-grid">
+                <div class="chart-card chart-large">
+                    <h3 class="chart-title">历年分红趋势</h3>
+                    <div id="chart-trend" class="chart-container"></div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 class="chart-title">各股票累计派息对比</h3>
+                    <div id="chart-compare" class="chart-container"></div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 class="chart-title">分红类型分布</h3>
+                    <div id="chart-pie" class="chart-container"></div>
+                </div>
+
+                <div class="chart-card chart-large">
+                    <h3 class="chart-title">每股派息热力图（股票 × 年份）</h3>
+                    <div id="chart-heatmap" class="chart-container"></div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 class="chart-title">年度分红事件数</h3>
+                    <div id="chart-yearly" class="chart-container"></div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 class="chart-title">送转股 vs 现金分红</h3>
+                    <div id="chart-radar" class="chart-container"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据明细表格 -->
+    <section class="section" id="datatable">
+        <div class="container">
+            <h2 class="section-title">数据明细</h2>
+            <p class="section-desc">清洗后的完整分红数据记录</p>
+
+            <div class="table-controls">
+                <div class="filter-group">
+                    <label>股票筛选：</label>
+                    <select id="stock-filter" class="filter-select">
+                        <option value="all">全部股票</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>年份筛选：</label>
+                    <select id="year-filter" class="filter-select">
+                        <option value="all">全部年份</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>搜索：</label>
+                    <input type="text" id="search-input" class="filter-input" placeholder="输入关键词搜索...">
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="data-table" id="dividend-table">
+                    <thead>
+                        <tr>
+                            <th>股票代码</th>
+                            <th>股票名称</th>
+                            <th>公告日期</th>
+                            <th>送股(每10股)</th>
+                            <th>转增(每10股)</th>
+                            <th>派息税前(每10股/元)</th>
+                            <th>每股派息(元)</th>
+                            <th>进度</th>
+                            <th>除权除息日</th>
+                            <th>股权登记日</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- 动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-pagination">
+                <span id="table-info">显示 0 条记录</span>
+                <div class="pagination-buttons">
+                    <button id="prev-page" class="page-btn">上一页</button>
+                    <span id="page-number">第 1 页</span>
+                    <button id="next-page" class="page-btn">下一页</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 统计分析 -->
+    <section class="section section-alt" id="statistics">
+        <div class="container">
+            <h2 class="section-title">统计分析</h2>
+            <p class="section-desc">按股票维度的深度统计指标</p>
+
+            <div class="stats-table-wrapper">
+                <table class="stats-table" id="stats-table">
+                    <thead>
+                        <tr>
+                            <th>股票代码</th>
+                            <th>股票名称</th>
+                            <th>分红次数</th>
+                            <th>现金分红次数</th>
+                            <th>送转股次数</th>
+                            <th>累计每股派息(元)</th>
+                            <th>平均每股派息(元)</th>
+                            <th>最大每股派息(元)</th>
+                            <th>累计每股送转(股)</th>
+                            <th>首次分红</th>
+                            <th>最近分红</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stats-body">
+                        <!-- 动态生成 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>项目信息</h4>
+                    <p>新浪财经历史分红数据获取与预处理实战作业</p>
+                    <p>技术栈：Python / Pandas / ECharts / Playwright</p>
+                </div>
+                <div class="footer-section">
+                    <h4>数据来源</h4>
+                    <p>新浪财经 - 个股分红页面</p>
+                    <p>数据仅供学习研究使用</p>
+                </div>
+                <div class="footer-section">
+                    <h4>交付物</h4>
+                    <p>源代码 / 数据集 / 可视化网页</p>
+                    <p>自动化测试 / 文档说明</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 数据科学实战项目 | 基于 Plan 模式需求确认 + UI/UX 设计 + Playwright 测试</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
